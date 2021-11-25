@@ -1,3 +1,3 @@
-# companion-module-tesmart-hdmimatrix"
+# companion-module-tesmart-hdmimatrix
 
 See HELP.md and License.
