@@ -16,5 +16,13 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"author": "David Stevens <teamjtf4@gmail.com>",
-	"license": "MIT"
+	"license": "MIT",
+	"homepage": "https://github.com/bitfocus/companion-module-tesmart-hdmimatrix#readme",
+	"bugs": {
+		"url": "https://github.com/bitfocus/companion-module-tesmart-hdmimatrix/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/bitfocus/companion-module-tesmart-hdmimatrix.git"
+	}
 }
