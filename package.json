@@ -1,6 +1,6 @@
 {
 	"name": "tesmart-hdmimatrix",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"api_version": "1.0.0",
 	"keywords": [
 		"tesmart",
@@ -8,14 +8,15 @@
 		"matrix"
 	],
 	"manufacturer": "TESMART",
-	"product": "8x8 HDMI Matrix",
+	"product": "HDMI Matrix (multiple variants)",
 	"shortname": "tesmart",
-	"description": "Controls the TESMART 8x8 HDMI matrix switcher",
+	"description": "Controls the TESMART HDMI matrix switcher",
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"author": "David Stevens <teamjtf4@gmail.com>",
+	"contributors":["James Rankin <james@rankinfamily.com>"],
 	"license": "MIT",
 	"homepage": "https://github.com/bitfocus/companion-module-tesmart-hdmimatrix#readme",
 	"bugs": {
