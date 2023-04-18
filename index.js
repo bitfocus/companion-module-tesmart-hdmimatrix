@@ -89,9 +89,9 @@ class instance extends instance_skel {
 	}
 	/*
 	example responses from switch:
-						
-	LINK:O1I1;O2I2;O3I3;O4I4;O5I4;O6I6;O7I7;O8I4;END			
-					
+
+	LINK:O1I1;O2I2;O3I3;O4I4;O5I4;O6I6;O7I7;O8I4;END
+
 	*/
 	processResponse(receivebuffer) {
 		let index = 0
@@ -264,6 +264,7 @@ class instance extends instance_skel {
 				choices: [
 					{ id: '4', label: '4' },
 					{ id: '8', label: '8' },
+					{ id: '16', label: '16' },
 				],
 			},
 			{
