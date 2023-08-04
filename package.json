@@ -1,29 +1,19 @@
 {
 	"name": "tesmart-hdmimatrix",
-	"version": "1.0.4",
-	"api_version": "1.0.0",
-	"keywords": [
-		"tesmart",
-		"hdmi",
-		"matrix"
-	],
-	"manufacturer": "TESMART",
-	"product": "HDMI Matrix (multiple variants)",
-	"shortname": "tesmart",
-	"description": "Controls the TESMART HDMI matrix switcher",
+	"version": "2.0.0",
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
-	"author": "David Stevens <teamjtf4@gmail.com>",
-	"contributors":["James Rankin <james@rankinfamily.com>"],
 	"license": "MIT",
-	"homepage": "https://github.com/bitfocus/companion-module-tesmart-hdmimatrix#readme",
-	"bugs": {
-		"url": "https://github.com/bitfocus/companion-module-tesmart-hdmimatrix/issues"
-	},
-	"repository": {
+ 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/bitfocus/companion-module-tesmart-hdmimatrix.git"
+	},
+	"dependencies": {
+		"@companion-module/base": "~1.4.1"
+	},
+	"devDependencies": {
+		"@companion-module/tools": "^1.3.2"
 	}
 }
