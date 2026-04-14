@@ -28,7 +28,7 @@ class tesmartInstance extends InstanceBase {
 		this.CHOICES_PRESETS = []
 
 		this.pollMixerTimer = undefined
-		this.selectedInput = 1
+		this.selectedInput = '1'
 		this.outputRoute = {}
 	}
 
