@@ -117,24 +117,24 @@ module.exports = {
 		if (inChannels > 0) {
 			for (let i = 1; i <= inChannels; i++) {
 				let channelObj = {}
-				channelObj.id = i
-				channelObj.label = i
+				channelObj.id = String(i)
+				channelObj.label = String(i)
 				this.CHOICES_INPUTS.push(channelObj)
 			}
 		}
 		if (outChannels > 0) {
 			for (let i = 1; i <= outChannels; i++) {
 				let channelObj = {}
-				channelObj.id = i
-				channelObj.label = i
+				channelObj.id = String(i)
+				channelObj.label = String(i)
 				this.CHOICES_OUTPUTS.push(channelObj)
-				this.outputRoute[i] = i
+				this.outputRoute[String(i)] = String(i)
 			}
 		}
 		for (let i = 1; i <= presets; i++) {
 			let channelObj = {}
-			channelObj.id = i
-			channelObj.label = i
+			channelObj.id = String(i)
+			channelObj.label = String(i)
 			this.CHOICES_PRESETS.push(channelObj)
 		}
 	}
