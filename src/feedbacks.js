@@ -26,12 +26,15 @@ module.exports = {
 				bgcolor: combineRgb(255, 0, 0),
 			},
 			callback: (feedback, bank) => {
-				let opt = feedback.options
-				if (this.selectedInput == opt.input) {
-					return true
-				} else {
-					return false
+				const input = feedback.options.input.toString()
+
+				for (const key in this.outputRoute) {
+					if (this.outputRoute[key] != null && this.outputRoute[key].toString() === input) {
+						return true
+					}
 				}
+
+				return false
 			},
 		}
 		feedbacks['output'] = {

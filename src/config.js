@@ -68,14 +68,14 @@ module.exports = {
 			{
 				type: 'checkbox',
 				id: 'log_responses',
-				label: 'Log returned data    :',
+				label: 'Log raw output from TESmart    :',
 				default: false,
 				width: 8,
 			},
 			{
 				type: 'checkbox',
 				id: 'log_tokens',
-				label: 'Log token data    :',
+				label: 'Log parsed tokens    :',
 				default: false,
 				width: 8,
 			},

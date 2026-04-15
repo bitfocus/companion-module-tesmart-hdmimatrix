@@ -16,6 +16,7 @@ module.exports = {
 			],
 			callback: function (action) {
 				self.selectedInput = action.options.input;
+				self.log('info', `select_input action: set selectedInput=${self.selectedInput}`)
 				self.checkFeedbacks();
 			}
 		};
@@ -89,7 +90,8 @@ module.exports = {
 					if (!action.options.selected) {
 						myInput = action.options.input
 					}
-					self.selectedInput = myInput.toString
+					self.selectedInput = myInput.toString()
+					// self.log('info', `sendToAllOutputs action: set selectedInput=${self.selectedInput}`)
 					self.sendCommmand('MT00SW' + myInput.toString().padStart(2, '0') + '00NT')
 					self.checkFeedbacks();
 			}

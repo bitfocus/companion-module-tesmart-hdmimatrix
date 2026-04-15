@@ -7,6 +7,8 @@ module.exports = {
 			delete this.socket
 		}
 
+		this.receiveBuffer = ''
+
 		if (this.config.host) {
 			this.socket = new TCPHelper(this.config.host, this.config.port)
 
@@ -32,36 +34,49 @@ module.exports = {
 
 	*/
 	processResponse: function(receivebuffer) {
-		let index = 0
+		const chunk = receivebuffer.toString('utf8')
+		
 		if (this.config.log_responses) {
-			this.log('info', 'Response: ' + receivebuffer)
+			this.log('info', 'Raw chunk: ' + chunk)
 		}
-		if (this.config.polled_data) {
-			// convert buffer to string and then into lines, removing blank lines
-			let lines = receivebuffer
-				.toString('utf8')
-				.split(/[\r?\n]+/)
-				.filter((element) => element)
-			//console.log(lines)
-			if (lines.length > 0) {
-				for (index = 0; index < lines.length; index++) {
-					if (lines[index].length > 0) {
-						if (lines[index].includes('LINK:O') && lines[index].includes(';END')) {
-							const tokens = lines[index].slice(5).slice(0,-3).split(';') //remove LINK: and END and split to tokens
-							if (this.config.log_tokens) {
-								this.log('info', 'Local Tokens: ' + tokens)
-							}
-							//console.log('Tokens: ' + tokens)
-							for (let token of tokens) {
-								if (token.length > 0) {
-									this.updateRoute(token.charAt(1), token.charAt(3))
-								}
-							}
+
+		this.receiveBuffer = (this.receiveBuffer || '') + chunk
+
+		let updated = false
+		let endIndex = this.receiveBuffer.indexOf(';END')
+
+		while (endIndex !== -1) {
+			const rawMessage = this.receiveBuffer.slice(0, endIndex + 4)
+			this.receiveBuffer = this.receiveBuffer.slice(endIndex + 4)
+
+			const startIndex = rawMessage.indexOf('LINK:')
+
+			if (startIndex !== -1){
+				const message = rawMessage.slice(startIndex)
+
+				if (message.startsWith('LINK:O')) {
+					const body = message.slice(5, -4)
+					const tokens = body.split(';').filter((token) => token.length > 0)
+
+					if (this.config.log_tokens) {
+						this.log('info', 'Response Tokens: ' + JSON.stringify(tokens))
+					}
+
+					for (const token of tokens) {
+						const match = token.match(/^O(\d+)I(\d+)$/)
+						if (match) {
+							this.updateRoute(match[1], match[2])
+							updated = true
 						}
 					}
 				}
-				this.checkFeedbacks()
 			}
+
+			endIndex = this.receiveBuffer.indexOf(';END')
+		}
+
+		if (updated) {
+			this.checkFeedbacks()
 		}
 	},
 
@@ -106,6 +121,7 @@ module.exports = {
 		variableObj[`output_route${output}`] = input;
 		this.setVariableValues(variableObj);
 		this.updateMatrixVariables()
+		this.checkFeedbacks()
 	},
 
 	initArrays: function(inChannels, outChannels, presets) {
@@ -128,7 +144,7 @@ module.exports = {
 				channelObj.id = String(i)
 				channelObj.label = String(i)
 				this.CHOICES_OUTPUTS.push(channelObj)
-				this.outputRoute[String(i)] = String(i)
+				this.outputRoute[String(i)] = null
 			}
 		}
 		for (let i = 1; i <= presets; i++) {
