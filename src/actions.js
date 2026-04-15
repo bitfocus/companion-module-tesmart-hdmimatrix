@@ -89,6 +89,7 @@ module.exports = {
 					if (!action.options.selected) {
 						myInput = action.options.input
 					}
+					self.selectedInput = myInput.toString
 					self.sendCommmand('MT00SW' + myInput.toString().padStart(2, '0') + '00NT')
 					self.checkFeedbacks();
 			}
